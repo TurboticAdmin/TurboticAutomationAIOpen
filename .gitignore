@@ -1,0 +1,44 @@
+.DS_Store
+ci/k8-agent-artifact.yaml
+
+# Dependencies
+node_modules/
+packages/*/node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment files
+.env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Helm values files (contain sensitive secrets)
+helm/turbotic-playground/values.yaml
+helm/**/values.yaml
+!helm/**/values-example.yaml
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+
+# Test files and directories
+Security Tests/
+packages/app/stripe.exe
+scripts/

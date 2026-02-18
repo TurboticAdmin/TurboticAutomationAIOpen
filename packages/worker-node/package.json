@@ -1,0 +1,41 @@
+{
+  "name": "jobs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "build-dev": "tsc --watch",
+    "build-image": "docker build  --platform linux/amd64 . -t dameemshahabaz/teamsaver-worker:latest",
+    "push-image": "docker push dameemshahabaz/teamsaver-worker:latest",
+    "start": "nodemon ./build/index.js"
+  },
+  "dependencies": {
+    "@langchain/anthropic": "^0.3.11",
+    "@langchain/community": "^0.3.24",
+    "@langchain/core": "^0.3.30",
+    "@langchain/langgraph": "^0.2.40",
+    "amqplib": "^0.10.4",
+    "axios": "^1.7.9",
+    "cron-converter": "^2.1.0",
+    "dotenv": "^16.4.5",
+    "fs-extra": "^11.2.0",
+    "mailgun.js": "^11.1.0",
+    "markdown-it": "^14.1.0",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.46",
+    "mongodb": "^6.6.1",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.5",
+    "@types/fs-extra": "^11.0.4",
+    "@types/markdown-it": "^14.1.2",
+    "@types/mongodb": "^4.0.7",
+    "@types/node": "^20.4.9",
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

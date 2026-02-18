@@ -1,0 +1,16 @@
+services:
+  script_runner:
+    image: playground-script-runner
+    container_name: 'playground-script-runner'
+    restart: unless-stopped
+    environment:
+      - AUTOMATIONAI_ENDPOINT=http://host.docker.internal:3000
+      - RABBIT_MQ_ENDPOINT=amqp://user:password@host.docker.internal:5672
+      - DISABLE_AUTOSHUTDOWN=true
+      - AUTOMATION_ID=68a81b025be4c337097a83d3
+      - EXECUTION_ID=68b51505b484ceb064fb56bc
+    networks:
+        - playground_go_net
+networks:
+  playground_go_net:
+    driver: bridge

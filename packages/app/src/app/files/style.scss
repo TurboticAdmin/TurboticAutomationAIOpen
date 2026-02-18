@@ -1,0 +1,1035 @@
+.files-container {
+  border-start-start-radius: 16px;
+  height: var(--window-height-without-header);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  // Figma Design Styles
+          .figma-main-container {
+            position: relative;
+            width: 100%;
+            // max-width: 1438px;
+            margin: 0 auto;
+            background: var(--container-background-color);
+            border-radius: 12px 0px 12px 12px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+          }
+  
+  .figma-header {
+    padding: 40px 40px 0;
+    flex-shrink: 0;
+
+            .figma-title {
+              font-family: 'DM Sans', sans-serif;
+              font-style: normal;
+              font-weight: 500;
+              font-size: 32px;
+              line-height: 100%;
+              letter-spacing: -0.02em;
+              color: var(--text-title-theme);
+              margin: 0;
+            }
+  }
+  
+  .figma-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 40px;
+    gap: 8px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    flex-shrink: 0;
+    
+    .figma-search-container {
+              .figma-search-input {
+                width: 276px;
+                height: 40px;
+                background: var(--cards);
+                border-radius: 99px;
+                border: 1px solid var(--border-default);
+                padding: 0 12px;
+
+                .ant-input {
+                  border: none;
+                  background: transparent;
+                  font-family: 'DM Sans', sans-serif;
+                  font-size: 15px;
+                  line-height: 22px;
+                  color: var(--tertiary-text);
+
+                  &::placeholder {
+                    color: var(--tertiary-text);
+                  }
+                }
+
+                .ant-input-prefix {
+                  margin-right: 10px;
+                  color: var(--tertiary-text);
+                }
+              }
+    }
+    
+    .figma-filters {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+      
+              .figma-dropdown {
+                height: 40px;
+                background: var(--cards);
+                border-radius: 99px;
+                border: 1px solid var(--border-default);
+
+                .ant-select-selector {
+                  height: 40px !important;
+                  background: var(--cards) !important;
+                  border-radius: 99px !important;
+                  border: none !important;
+                  padding: 0 16px !important;
+
+                  .ant-select-selection-item {
+                    font-family: 'DM Sans', sans-serif;
+                    font-size: 14px;
+                    line-height: 22px;
+                    color: var(--text-color);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  }
+                }
+
+                .ant-select-arrow {
+                  color: var(--tertiary-text);
+                }
+              }
+    }
+  }
+  
+  .figma-file-list {
+    padding: 0 40px;
+    margin-top: 12px;
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    
+    
+     .figma-action-buttons-row {
+       /* Frame 427322392 */
+       display: flex;
+       flex-direction: row;
+       align-items: flex-start;
+       padding: 0px;
+       gap: 24px;
+       width: auto;
+       background: transparent;
+
+       /* Dark mode support */
+       .dark & {
+         background: transparent;
+       }
+
+      .figma-download-action {
+        /* Download Button */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        gap: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        background: transparent;
+        border: none;
+
+         &:hover {
+           opacity: 0.7;
+         }
+
+         .figma-download-icon {
+           width: 24px;
+           height: 24px;
+           color: #111827;
+           flex: none;
+           order: 0;
+           flex-grow: 0;
+
+           .dark & {
+             color: #ffffff;
+           }
+         }
+
+         .figma-btn-text {
+           font-family: 'DM Sans';
+           font-style: normal;
+           font-weight: 400;
+           font-size: 15px;
+           line-height: 22px;
+           color: #111827;
+           flex: none;
+           order: 1;
+           flex-grow: 0;
+
+           .dark & {
+             color: #ffffff;
+           }
+         }
+      }
+
+      .figma-delete-action {
+        /* Delete Button */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        gap: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        background: transparent;
+        border: none;
+
+         &:hover {
+           opacity: 0.7;
+         }
+
+        .figma-trash-icon {
+          width: 24px;
+          height: 24px;
+          color: #D13036;
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+
+          .dark & {
+            color: #D13036;
+          }
+        }
+
+        .figma-btn-text {
+          font-family: 'DM Sans';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 22px;
+          color: #D13036;
+          flex: none;
+          order: 1;
+          flex-grow: 0;
+
+          .dark & {
+            color: #D13036;
+          }
+        }
+      }
+    }
+    
+    
+    .figma-column-headers {
+      margin-bottom: 12px;
+      
+      .figma-column-headers-row {
+        display: flex;
+        align-items: center;
+        padding: 0 24px;
+        height: 32px;
+        
+                .figma-column-header-cell {
+                  font-family: 'DM Sans', sans-serif;
+                  font-size: 15px;
+                  line-height: 15px;
+                  color: var(--text-color);
+                  font-weight: 400;
+          
+          &.figma-file-name {
+            width: 20px; // Checkbox width
+            margin-right: 16px; // Gap after checkbox
+            margin-left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          
+          &.figma-file-name-content {
+            width: 48px; // File icon width
+            margin-right: 16px; // Gap after file icon
+          }
+          
+          &.figma-file-name-text {
+            width: 248px; // File name text width
+            margin-right: 16px;
+          }
+          
+          &.figma-date-added {
+            width: 170px;
+          }
+          
+          &.figma-size {
+            width: 120px;
+          }
+          
+          &.figma-type {
+            width: 120px;
+          }
+          
+          &.figma-reference {
+            width: 243px;
+          }
+        }
+      }
+    }
+    
+            .figma-empty-state {
+              text-align: center;
+              padding: 48px 0;
+
+              h3 {
+                font-family: 'DM Sans', sans-serif;
+                font-size: 20px;
+                font-weight: 400;
+                color: var(--text-color);
+                margin: 16px 0 8px;
+              }
+
+              p {
+                font-family: 'DM Sans', sans-serif;
+                font-size: 15px;
+                line-height: 15px;
+                color: var(--secondary-text);
+              }
+            }
+    
+    .figma-file-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      
+              .figma-file-item {
+                background: var(--cards);
+                border-radius: 12px;
+                padding: 24px 0;
+                border: 1px solid var(--border-Secondary);
+                transition: all 0.2s ease;
+
+                &:hover {
+                  border-color: var(--border-default);
+                  box-shadow: var(--box-shadow-secondary);
+                  transform: translateY(-1px);
+                }
+        
+        .figma-file-content {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 24px;
+          
+          .figma-file-main {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1;
+            
+            .figma-file-checkbox {
+              width: 20px;
+            }
+            
+            .figma-file-icon {
+              width: 48px;
+              height: 48px;
+              border-radius: 12px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+              
+              &.bg-green-100 {
+                background: linear-gradient(135deg, #E2F1E5 0%, #D1E7DD 100%);
+                color: #3C9F53;
+              }
+              
+              &.bg-orange-100 {
+                background: linear-gradient(135deg, #FEEDE3 0%, #FED7AA 100%);
+                color: #F78747;
+              }
+              
+              &.bg-red-100 {
+                background: linear-gradient(135deg, #F8E0E1 0%, #FECACA 100%);
+                color: #D13036;
+              }
+              
+              &.bg-blue-100 {
+                background: linear-gradient(135deg, #DDEDFD 0%, #BFDBFE 100%);
+                color: #1A8AF2;
+              }
+              
+              &.bg-gray-100 {
+                background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+                color: rgba(0, 0, 0, 0.45);
+              }
+              
+              svg {
+                width: 24px;
+                height: 24px;
+              }
+            }
+            
+                    .figma-file-name {
+                      font-family: 'DM Sans', sans-serif;
+                      font-size: 15px;
+                      line-height: 15px;
+                      letter-spacing: -0.02em;
+                      color: var(--text-color);
+                      width: 248px;
+                      flex-shrink: 0;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      white-space: nowrap;
+                    }
+
+                    .figma-file-date {
+                      font-family: 'DM Sans', sans-serif;
+                      font-size: 15px;
+                      line-height: 15px;
+                      color: var(--secondary-text);
+                      width: 170px;
+                      flex-shrink: 0;
+                    }
+
+                    .figma-file-size {
+                      font-family: 'DM Sans', sans-serif;
+                      font-size: 15px;
+                      line-height: 15px;
+                      color: var(--secondary-text);
+                      width: 120px;
+                      flex-shrink: 0;
+                    }
+            
+            .figma-file-type-badge {
+              width: 120px;
+              flex-shrink: 0;
+              
+              .figma-type-tag {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0 12px;
+                height: 28px;
+                border-radius: 400px;
+                font-family: 'DM Sans', sans-serif;
+                font-weight: 600;
+                font-size: 13px;
+                line-height: 22px;
+                
+                &.figma-type-excel {
+                  background: rgba(60, 159, 83, 0.15);
+                  color: #3C9F53;
+                }
+                
+                &.figma-type-powerpoint {
+                  background: rgba(247, 135, 71, 0.15);
+                  color: #F78747;
+                }
+                
+                &.figma-type-pdf {
+                  background: rgba(209, 48, 54, 0.15);
+                  color: #D13036;
+                }
+                
+                &.figma-type-word {
+                  background: rgba(26, 138, 242, 0.15);
+                  color: #1A8AF2;
+                }
+                
+                &.figma-type-text {
+                  background: #F3F4F6;
+                  color: rgba(0, 0, 0, 0.45);
+                }
+              }
+            }
+            
+            // Dark mode styles for file type badges
+            .dark & {
+              .figma-type-tag {
+                &.figma-type-excel {
+                  background: rgba(60, 159, 83, 0.4) !important;
+                  color: #4ade80 !important; // Bright green
+                }
+                
+                &.figma-type-powerpoint {
+                  background: rgba(247, 135, 71, 0.4) !important;
+                  color: #fb923c !important; // Bright orange
+                }
+                
+                &.figma-type-pdf {
+                  background: rgba(209, 48, 54, 0.4) !important;
+                  color: #f87171 !important; // Bright red
+                }
+                
+                &.figma-type-word {
+                  background: rgba(26, 138, 242, 0.4) !important;
+                  color: #60a5fa !important; // Bright blue
+                }
+                
+                &.figma-type-text {
+                  background: rgba(156, 163, 175, 0.3) !important;
+                  color: #d1d5db !important; // Light gray
+                }
+              }
+            }
+            
+                    .figma-file-reference {
+                      font-family: 'DM Sans', sans-serif;
+                      font-size: 15px;
+                      line-height: 15px;
+                      color: var(--secondary-text);
+                      width: 243px;
+                      flex-shrink: 0;
+                    }
+          }
+          
+          .figma-file-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            
+                    .figma-action-btn {
+                      /* Button - Auto layout */
+                      display: flex;
+                      flex-direction: row;
+                      justify-content: center;
+                      align-items: center;
+                      padding: 0px 16px;
+                      gap: 8px;
+                      border-radius: 400px;
+                      border: none;
+                      background: transparent;
+                      cursor: pointer;
+                      transition: all 0.2s ease;
+
+                      &:hover {
+                        transform: translateY(-1px);
+                      }
+
+                      &.figma-download-btn {
+                        width: 127px;
+                        height: 40px;
+                        flex: none;
+                        order: 0;
+                        flex-grow: 0;
+
+                        .figma-download-icon {
+                          /* DownloadSimple */
+                          width: 16px;
+                          height: 16px;
+                          flex: none;
+                          order: 0;
+                          flex-grow: 0;
+                          color: rgba(0, 0, 0, 0.9);
+
+                          .dark & {
+                            color: #FFFFFF;
+                          }
+                        }
+
+                        .figma-btn-text {
+                          /* Button text */
+                          width: 71px;
+                          height: 22px;
+                          font-family: 'DM Sans';
+                          font-style: normal;
+                          font-weight: 500;
+                          font-size: 15px;
+                          line-height: 22px;
+                          color: rgba(0, 0, 0, 0.9);
+                          flex: none;
+                          order: 1;
+                          flex-grow: 0;
+
+                          .dark & {
+                            color: #FFFFFF;
+                          }
+                        }
+                      }
+
+                      &.figma-delete-btn {
+                        width: 102px;
+                        height: 40px;
+                        flex: none;
+                        order: 1;
+                        flex-grow: 0;
+
+                        .figma-trash-icon {
+                          /* Trash */
+                          width: 16px;
+                          height: 16px;
+                          flex: none;
+                          order: 0;
+                          flex-grow: 0;
+                          color: #D13036;
+                        }
+
+                        .figma-btn-text {
+                          /* Button text */
+                          width: 46px;
+                          height: 22px;
+                          font-family: 'DM Sans';
+                          font-style: normal;
+                          font-weight: 500;
+                          font-size: 15px;
+                          line-height: 22px;
+                          color: #D13036;
+                          flex: none;
+                          order: 1;
+                          flex-grow: 0;
+                        }
+                      }
+                    }
+          }
+        }
+      }
+    }
+  }
+  // Enhanced filter controls styling
+  .ant-select {
+    .ant-select-selector {
+      // border-radius: 6px !important;
+      // border: 1px solid #d9d9d9 !important;
+      // background: #fff !important;
+      // box-shadow: none !important;
+
+      &:hover {
+        border-color: #bfbfbf !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+      }
+
+      &:focus,
+      &.ant-select-focused {
+        border-color: #1890ff !important;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+      }
+    }
+
+    &.ant-select-open .ant-select-selector {
+      border-color: #1890ff !important;
+      box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+    }
+  }
+
+  .ant-input {
+    // border-radius: 8px !important;
+    // border: 1px solid #d9d9d9 !important;
+    // background: #fff !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+
+    &:hover {
+      border-color: #bfbfbf !important;
+    }
+
+    &:focus {
+      border-color: #1890ff !important;
+      box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+    }
+  }
+
+  // Filter tag styling
+  .ant-tag {
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid;
+
+    .anticon {
+      font-size: 12px;
+    }
+  }
+
+  // Button enhancements
+  .ant-btn {
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &.ant-btn-text {
+      &:hover {
+        // background-color: #f5f5f5;
+        transform: scale(1.05);
+      }
+    }
+
+    &.ant-btn-danger {
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(255, 77, 79, 0.3);
+      }
+    }
+  }
+
+  // Pagination styling (same as User Configurations)
+  .ant-pagination {
+    * {
+      border-color: #d9d9d9 !important;
+      color: #595959 !important;
+      box-shadow: none !important;
+    }
+
+    *:hover {
+      border-color: #bfbfbf !important;
+      color: #595959 !important;
+      box-shadow: none !important;
+    }
+
+    *:focus {
+      border-color: #bfbfbf !important;
+      color: #595959 !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+
+    .ant-pagination-item {
+      border-radius: 8px;
+      border: 1px solid #d9d9d9;
+
+      &:hover {
+        border-color: #bfbfbf;
+        background-color: #f5f5f5;
+      }
+
+      &.ant-pagination-item-active {
+        background: #f0f0f0;
+        border-color: #bfbfbf;
+        color: #262626;
+
+        a {
+          color: #262626;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .ant-pagination-prev,
+    .ant-pagination-next {
+      border-radius: 8px;
+      border: 1px solid #d9d9d9;
+
+      &:hover {
+        border-color: #bfbfbf;
+        background-color: #f5f5f5;
+      }
+    }
+
+    .ant-pagination-options-size-changer {
+      .ant-select-selector {
+        height: 24px !important;
+        border: 1px solid #d9d9d9 !important;
+        background: #fff !important;
+        box-shadow: none !important;
+        padding: 0 20px 0 8px !important;
+
+        .ant-select-selection-item {
+          color: #595959 !important;
+          line-height: 22px !important;
+          font-size: 13px !important;
+        }
+
+        &:hover {
+          border-color: #bfbfbf !important;
+          background: #f5f5f5 !important;
+        }
+      }
+
+      .ant-select-arrow {
+        color: #8c8c8c !important;
+        right: 6px !important;
+        font-size: 10px !important;
+      }
+    }
+
+    .ant-pagination-options-quick-jumper {
+      input {
+        border: 1px solid #d9d9d9 !important;
+        box-shadow: none !important;
+        color: #595959 !important;
+
+        &:hover {
+          border-color: #bfbfbf !important;
+          box-shadow: none !important;
+        }
+
+        &:focus {
+          border-color: #bfbfbf !important;
+          box-shadow: none !important;
+        }
+      }
+    }
+
+    .ant-pagination-jump-prev,
+    .ant-pagination-jump-next {
+      &:hover {
+        .ant-pagination-item-link {
+          color: #595959;
+        }
+      }
+    }
+
+    .ant-pagination-item-link {
+      border-radius: 8px;
+      border: 1px solid #d9d9d9;
+
+      &:hover {
+        border-color: #bfbfbf;
+        color: #595959;
+      }
+    }
+
+    // Global override for any remaining blue elements
+    .ant-select,
+    .ant-select-selector,
+    .ant-select-selection-item,
+    .ant-input {
+      border-color: #d9d9d9 !important;
+      color: #595959 !important;
+      background-color: #fff !important;
+      box-shadow: none !important;
+
+      &:hover,
+      &:focus,
+      &:active,
+      &.ant-select-focused,
+      &.ant-select-open {
+        border-color: #bfbfbf !important;
+        color: #595959 !important;
+        background-color: #f5f5f5 !important;
+        box-shadow: none !important;
+        outline: none !important;
+      }
+    }
+  }
+
+  // File card enhancements
+  .file-card {
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+    }
+  }
+
+  // File type badges
+  .file-type-badge {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    padding: 2px 6px;
+  }
+
+  // Action buttons
+  .action-button {
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  // Empty state styling
+  .ant-empty {
+    .ant-empty-description {
+      color: #8c8c8c;
+      font-size: 14px;
+    }
+  }
+
+  // Checkbox styling
+  .ant-checkbox {
+    .ant-checkbox-inner {
+      border-radius: 4px;
+      border: 1.5px solid #d9d9d9;
+
+      &:hover {
+        border-color: #40a9ff;
+      }
+    }
+
+    &.ant-checkbox-checked {
+      .ant-checkbox-inner {
+        background-color: #1890ff;
+        border-color: #1890ff;
+      }
+    }
+  }
+
+  .files-table {
+    table {
+      table-layout: fixed !important;
+      width: 100% !important;
+    }
+    
+    // Selection column (checkbox column) styling
+    .ant-table-selection-column {
+      position: relative;
+      z-index: 10 !important;
+      width: 60px !important;
+      min-width: 60px !important;
+      padding-left: 16px !important;
+      padding-right: 8px !important;
+      
+      .ant-checkbox-wrapper {
+        position: relative;
+        z-index: 10 !important;
+      }
+    }
+    
+    // File name column (second column after selection)
+    .ant-table-thead > tr > th:nth-child(2),
+    .ant-table-tbody > tr > td:nth-child(2) {
+      padding-left: 16px !important;
+      
+      > div {
+        max-width: 100% !important;
+        overflow: hidden !important;
+        width: 100% !important;
+      }
+    }
+    
+    .ant-table-thead > tr > th:first-child {
+      overflow: hidden !important;
+    }
+    
+    .ant-table-tbody > tr > td:first-child {
+      overflow: hidden !important;
+    }
+    
+    .ant-table-cell {
+      &:first-child {
+        overflow: hidden !important;
+      }
+    }
+  }
+
+  .ant-table {
+      background: transparent;
+
+      table {
+        border-spacing: 0 8px;
+
+
+        .type-tag {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0 12px;
+          height: 28px;
+          border-radius: 400px;
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 600;
+          font-size: 13px;
+          line-height: 22px;
+          
+          &.type-excel {
+            background: rgba(60, 159, 83, 0.15);
+            color: #3C9F53;
+          }
+          
+          &.type-powerpoint {
+            background: rgba(247, 135, 71, 0.15);
+            color: #F78747;
+          }
+          
+          &.type-pdf {
+            background: rgba(209, 48, 54, 0.15);
+            color: #D13036;
+          }
+          
+          &.type-word {
+            background: rgba(26, 138, 242, 0.15);
+            color: #1A8AF2;
+          }
+          
+          &.type-text {
+            background: #F3F4F6;
+            color: rgba(0, 0, 0, 0.45);
+          }
+        }
+
+        tr.ant-table-row {
+          .ant-table-cell {
+            padding: 24px 8px;
+            background: var(--list-item-background-color);
+          }
+
+          // Selection column (first child)
+          & td:first-child,
+          & th:first-child {
+            border-radius: 12px 0 0 12px;
+            padding-left: 16px;
+            padding-right: 8px;
+          }
+          
+          // File name column (second child after selection)
+          & td:nth-child(2),
+          & th:nth-child(2) {
+            padding-left: 16px !important;
+          }
+
+          & td:last-child {
+            border-radius: 0 12px 12px 0;
+          }
+        }
+      }
+    }
+  }
+  
+    
+  th {
+    background: transparent !important;
+    border: 0 !important;
+
+    &::before {
+      display: none !important;
+    }
+  }
+
+  // File name tooltip styling - matching canvas page
+  .file-name-tooltip {
+    .ant-tooltip-inner {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .ant-tooltip-arrow::before {
+      background-color: #ffffff !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    }
+  }
+
+  // Dark mode tooltip styling
+  .dark .file-name-tooltip {
+    .ant-tooltip-inner {
+      background-color: #4E5052 !important;
+      color: #c9d1d9 !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .ant-tooltip-arrow::before {
+      background-color: #4E5052 !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+  }

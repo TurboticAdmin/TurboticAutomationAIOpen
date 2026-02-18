@@ -1,0 +1,331 @@
+.output-console {
+    .console-header {
+        .ant-input-affix-wrapper {
+            background-color: #21262d;
+            border-color: #30363d;
+            
+            &:hover, &:focus {
+                border-color: #58a6ff;
+            }
+            
+            .ant-input {
+                background-color: transparent;
+                color: #c9d1d9;
+                
+                &::placeholder {
+                    color: #8c8c8c;
+                }
+            }
+            
+            .anticon {
+                color: #8c8c8c;
+            }
+        }
+        
+        .ant-select {
+            .ant-select-selector {
+                background-color: #21262d;
+                border-color: #30363d;
+                color: #c9d1d9;
+                
+                &:hover {
+                    border-color: #58a6ff;
+                }
+            }
+            
+            .ant-select-arrow {
+                color: #8c8c8c;
+            }
+        }
+        
+        .ant-btn {
+            &:hover {
+                background-color: #21262d;
+                border-color: #58a6ff;
+                color: #58a6ff;
+            }
+        }
+    }
+    
+    .console-content {
+        .log-entry {
+            &:hover {
+                .anticon-copy {
+                    opacity: 1 !important;
+                }
+            }
+            
+            // Fix with AI button styling
+            .log-entry-buttons {
+                .ant-btn-primary {
+                    animation: pulse-glow 2s ease-in-out infinite;
+                    
+                    &:hover {
+                        transform: translateY(-1px);
+                        box-shadow: 0 4px 8px rgba(24, 144, 255, 0.4);
+                    }
+                }
+            }
+            
+            .log-timestamp {
+                font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            }
+            
+            .log-message {
+                font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+                
+                // Syntax highlighting for common patterns
+                .log-url {
+                    color: #58a6ff;
+                    text-decoration: underline;
+                    cursor: pointer;
+                    
+                    &:hover {
+                        color: #79c0ff;
+                    }
+                }
+                
+                .log-error {
+                    color: #ff4d4f;
+                    font-weight: 500;
+                }
+                
+                .log-warning {
+                    color: #faad14;
+                    font-weight: 500;
+                }
+                
+                .log-success {
+                    color: #52c41a;
+                    font-weight: 500;
+                }
+                
+                .log-number {
+                    color: #d2a8ff;
+                }
+                
+                .log-string {
+                    color: #a5d6ff;
+                }
+            }
+        }
+    }
+}
+
+// Dark theme overrides for Ant Design components
+.output-console {
+    .ant-badge {
+        .ant-badge-count {
+            background-color: #1890ff;
+            color: #ffffff;
+            box-shadow: 0 0 0 1px #1890ff;
+        }
+    }
+    
+    .ant-tooltip {
+        .ant-tooltip-inner {
+            background-color: #21262d;
+            color: #c9d1d9;
+        }
+        
+        .ant-tooltip-arrow::before {
+            background-color: #21262d;
+        }
+    }
+}
+
+// Scrollbar styling
+.output-console .console-content {
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: #0d1117;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: #30363d;
+        border-radius: 4px;
+        
+        &:hover {
+            background: #484f58;
+        }
+    }
+}
+
+// Animation for log entries
+.log-entry {
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-2px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 2px 4px rgba(24, 144, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 2px 8px rgba(24, 144, 255, 0.6);
+    }
+}
+
+/* Status Dashboard Animations */
+@keyframes slideInDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes dots {
+    0%, 20% {
+        color: transparent;
+        text-shadow: 0.25em 0 0 transparent, 0.5em 0 0 transparent;
+    }
+    40% {
+        color: #fff;
+        text-shadow: 0.25em 0 0 transparent, 0.5em 0 0 transparent;
+    }
+    60% {
+        text-shadow: 0.25em 0 0 #fff, 0.5em 0 0 transparent;
+    }
+    80%, 100% {
+        text-shadow: 0.25em 0 0 #fff, 0.5em 0 0 #fff;
+    }
+}
+
+/* Enhanced hover effects for status cards */
+.ant-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15) !important;
+}
+
+/* Glowing effects for active states */
+.status-card-active {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1), 0 0 20px rgba(82, 196, 26, 0.3);
+  }
+  to {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1), 0 0 30px rgba(82, 196, 26, 0.5);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+    .output-console {
+        .console-header {
+            flex-direction: column;
+            gap: 8px;
+            padding: 12px;
+            
+            .ant-space {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .ant-input-affix-wrapper {
+                width: 150px !important;
+            }
+        }
+    }
+} 
+
+.ms-auth-alert {
+  background: #fffbe6;
+  color: #1b1f27;
+  border: 1px solid #ffe58f;
+  box-shadow: 0 2px 8px 0 rgba(36,41,54,0.10);
+  border-radius: 8px;
+  
+  .ant-alert-message {
+    color: #d48806;
+    font-weight: 600;
+  }
+  .ant-alert-description {
+    color: #1b1f27;
+  }
+  .ant-btn-primary {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #fff;
+    &:hover {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
+    }
+  }
+  .ant-btn {
+    border-radius: 6px;
+  }
+}
+
+// Dark mode
+body.dark .ms-auth-alert, .dark .ms-auth-alert {
+  background: #21262d;
+  color: #f6e58d;
+  border: 1px solid #d48806;
+  .ant-alert-message {
+    color: #ffe58f;
+  }
+  .ant-alert-description {
+    color: #c9d1d9;
+  }
+  .ant-btn-primary {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #fff;
+    &:hover {
+      background: #1d4ed8;
+      border-color: #1d4ed8;
+    }
+  }
+  .ant-btn {
+    border-radius: 6px;
+  }
+} 
+
+/* Status dashboard responsive adjustments */
+@media (max-width: 768px) {
+  .status-dashboard {
+    padding: 16px !important;
+  }
+  
+  .status-card {
+    margin-bottom: 12px;
+  }
+} 

@@ -1,0 +1,67 @@
+{{- if .Values.workerNode.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "turbotic-playground.fullname" . }}-{{ .Values.workerNode.name }}
+  labels:
+    {{- include "turbotic-playground.componentLabels" (dict "component" .Values.workerNode.name "Values" .Values "Release" .Release "Chart" .Chart) | nindent 4 }}
+spec:
+  replicas: {{ .Values.workerNode.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "turbotic-playground.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: {{ .Values.workerNode.name }}
+  template:
+    metadata:
+      labels:
+        {{- include "turbotic-playground.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: {{ .Values.workerNode.name }}
+    spec:
+      {{- with .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "turbotic-playground.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+      - name: {{ .Values.workerNode.name }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+        image: {{ include "turbotic-playground.image" (dict "image" .Values.workerNode.image "Values" .Values) }}
+        imagePullPolicy: {{ .Values.workerNode.image.pullPolicy }}
+        env:
+        {{- if .Values.workerNode.secrets.mongoUri }}
+        - name: DB_CONN_STR
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "turbotic-playground.fullname" $ }}-secrets
+              key: mongo-uri
+        {{- end }}
+        {{- if .Values.workerNode.secrets.rabbitMqEndpoint }}
+        - name: RABBIT_MQ_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "turbotic-playground.fullname" $ }}-secrets
+              key: rabbitmq-endpoint
+        {{- end }}
+        {{- if .Values.workerNode.env.appServerUrl }}
+        - name: APP_SERVER_URL
+          value: {{ .Values.workerNode.env.appServerUrl | quote }}
+        {{- end }}
+        resources:
+          {{- toYaml .Values.workerNode.resources | nindent 10 }}
+      {{- with .Values.workerNode.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.workerNode.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.workerNode.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}
+

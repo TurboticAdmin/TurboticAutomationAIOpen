@@ -1,0 +1,30 @@
+{
+  "name": "realtime-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build/index.js",
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "build-image": "docker build -t automationai-rt .",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/morgan": "^1.9.10",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@socket.io/mongo-adapter": "^0.4.0",
+    "@types/express": "^5.0.3",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "mongodb": "6.15.0",
+    "morgan": "^1.10.1",
+    "socket.io": "^4.8.1"
+  }
+}

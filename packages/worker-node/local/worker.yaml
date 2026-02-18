@@ -1,0 +1,11 @@
+services:
+  turbotic_jobs:
+    platform: linux/amd64
+    image: turbotic-jobs:latest
+    container_name: 'turbotic_jobs'
+    environment:
+      - RABBIT_MQ_ENDPOINT=amqp://user:password@host.docker.internal:5672
+      - DB_CONN_STR=mongodb://20.238.88.125:57017/turbotic-ai-dev
+      - STORAGE_AZURE_ACCOUNT_NAME=turboticassetdev
+      - STORAGE_AZURE_ACCOUNT_KEY=tOsGJDa/4YzfWmVFFz86xJoAz1lKfsAFfLG0Ggx+2LC+6klRhYFRaDSfHuG/iPnO0yUkxPE7OIFGGQGK33TRQQ==
+      - STORAGE_AZURE_CONTAINER_NAME=dev

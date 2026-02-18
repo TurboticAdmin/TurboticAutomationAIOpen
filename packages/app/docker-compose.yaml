@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  automationai-app:
+    image: automationai-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - MONGO_URI=mongodb://host.docker.internal:27017/playground

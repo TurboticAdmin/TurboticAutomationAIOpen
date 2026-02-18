@@ -1,0 +1,19 @@
+{
+  "name": "turbotic-playground",
+  "version": "1.0.0",
+  "description": "Turbotic Playground - Automation AI Platform",
+  "private": true,
+  "scripts": {
+    "dev": "cd packages/app && npm run dev",
+    "dev:app": "cd packages/app && npm run dev",
+    "dev:runner": "cd packages/script-runner && npm run dev",
+    "build": "cd packages/app && npm run build",
+    "start": "cd packages/app && npm run start",
+    "install:all": "npm install && cd packages/app && npm install && cd ../script-runner && npm install",
+    "clean": "rm -rf node_modules packages/*/node_modules packages/*/dist packages/*/.next",
+    "lint": "cd packages/app && npm run lint"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+} 

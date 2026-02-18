@@ -1,0 +1,8 @@
+@keyframes modern-slide-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-modern-slide-in {
+  animation: modern-slide-in 0.3s cubic-bezier(.4,0,.2,1);
+} 

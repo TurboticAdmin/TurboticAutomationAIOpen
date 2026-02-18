@@ -1,0 +1,66 @@
+{{- if .Values.serviceAccount.create }}
+---
+# ClusterRole for namespace management (required for creating automation environments)
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "turbotic-playground.fullname" . }}-namespaces-role
+  labels:
+    {{- include "turbotic-playground.labels" . | nindent 4 }}
+rules:
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["get", "list", "create", "watch"]
+---
+# ClusterRoleBinding to grant namespace permissions to the service account
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "turbotic-playground.fullname" . }}-namespaces-binding
+  labels:
+    {{- include "turbotic-playground.labels" . | nindent 4 }}
+subjects:
+- kind: ServiceAccount
+  name: {{ include "turbotic-playground.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: ClusterRole
+  name: {{ include "turbotic-playground.fullname" . }}-namespaces-role
+  apiGroup: rbac.authorization.k8s.io
+---
+# Role for managing jobs, pods, and other resources in automation namespace
+# The namespace is determined by NAMESPACE or KUBERNETES_NAMESPACE env var (default: turbotic-automationai-test)
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "turbotic-playground.fullname" . }}-automation-role
+  labels:
+    {{- include "turbotic-playground.labels" . | nindent 4 }}
+rules:
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["get", "list", "create", "watch", "delete"]
+- apiGroups: [""]
+  resources: ["pods", "events"]
+  verbs: ["get", "list", "watch", "delete"]
+- apiGroups: [""]
+  resources: ["configmaps", "secrets"]
+  verbs: ["get", "list"]
+---
+# ClusterRoleBinding for automation resources (applies to all namespaces)
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "turbotic-playground.fullname" . }}-automation-binding
+  labels:
+    {{- include "turbotic-playground.labels" . | nindent 4 }}
+subjects:
+- kind: ServiceAccount
+  name: {{ include "turbotic-playground.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: ClusterRole
+  name: {{ include "turbotic-playground.fullname" . }}-automation-role
+  apiGroup: rbac.authorization.k8s.io
+{{- end }}
+

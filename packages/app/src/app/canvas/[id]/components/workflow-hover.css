@@ -1,0 +1,44 @@
+/* Workflow Container Hover Effects */
+.workflow-container {
+  cursor: default;
+}
+
+/* Workflow Step Hover - Hand Cursor */
+.workflow-container .card-background-color {
+  cursor: grab !important;
+}
+
+.workflow-container .card-background-color:active {
+  cursor: grabbing !important;
+}
+
+/* Connector Line Hover States */
+.workflow-connector {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Cipher connector line */
+.cipher-connector-line {
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  display: block !important;
+  height: 2px !important;
+  min-height: 2px !important;
+  flex-shrink: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Add button hover with hand/finger effect */
+.connector-add-btn {
+  position: relative;
+  z-index: 10;
+}
+
+.connector-add-btn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+

@@ -1,0 +1,19 @@
+{{- if .Values.realtimeServer.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "turbotic-playground.fullname" . }}-{{ .Values.realtimeServer.name }}
+  labels:
+    {{- include "turbotic-playground.componentLabels" (dict "component" .Values.realtimeServer.name "Values" .Values "Release" .Release "Chart" .Chart) | nindent 4 }}
+spec:
+  type: {{ .Values.realtimeServer.service.type }}
+  ports:
+    - port: {{ .Values.realtimeServer.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "turbotic-playground.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: {{ .Values.realtimeServer.name }}
+{{- end }}
+

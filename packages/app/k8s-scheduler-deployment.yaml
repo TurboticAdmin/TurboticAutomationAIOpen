@@ -1,0 +1,127 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:automationai-scheduler
+  namespace: $NAMESPACE
+spec:
+  replicas: $REPLICAS
+  selector:
+    matchLabels:
+      app:automationai-scheduler
+  template:
+    metadata:
+      labels:
+        app:automationai-scheduler
+    spec:
+      serviceAccountName: automationai-admin-sa
+      imagePullSecrets:
+        - name: $registry_secret_name
+      containers:
+        - name:automationai-scheduler
+          image: $registry/automationai:$version
+          imagePullPolicy: $image_pull_policy
+          ports:
+            - containerPort: 3000
+          env:
+            - name: BUILD_NUMBER
+              value: '$BUILD_NUMBER'
+            - name: RELEASE_NAME
+              value: '$RELEASE_NAME'
+            - name: NODE_ENV
+              value: '$NODE_ENV'
+            - name: APP_ENV
+              value: '$APP_ENV'
+            - name: NAMESPACE
+              value: '$NAMESPACE'
+            - name: MONGO_URI
+              value: '$MONGO_URI'
+            - name: RABBIT_MQ_ENDPOINT
+              value: '$RABBIT_MQ_ENDPOINT'
+            - name: TAVILY_API_KEY
+              value: '$TAVILY_API_KEY'
+            - name: AZURE_OPENAI_API_INSTANCE_NAME
+              value: '$AZURE_OPENAI_API_INSTANCE_NAME'
+            - name: AZURE_OPENAI_API_KEY
+              value: '$AZURE_OPENAI_API_KEY'
+            - name: AZURE_OPENAI_API_VERSION
+              value: '$AZURE_OPENAI_API_VERSION'
+            - name: AZURE_OPENAI_API_DEPLOYMENT_NAME
+              value: '$AZURE_OPENAI_API_DEPLOYMENT_NAME'
+            - name: JWT_SECRET
+              value: '$JWT_SECRET'
+            - name: SENDGRID_API_KEY
+              value: '$SENDGRID_API_KEY'
+            - name: AUTOMATION_RUNNER_IMAGE
+              value: '$registry/automationai-script-runner:latest'
+            - name: AUTOMATIONAI_ENDPOINT
+              value: '$AUTOMATIONAI_ENDPOINT'
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 100m
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: nodepool
+                operator: NotIn
+                values:
+                - user
+                - system
+                - delphi-server
+                - $nodeAffinityNotInValue
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name:automationai-scheduler-service
+  namespace: $NAMESPACE
+spec:
+  selector:
+    app:automationai-scheduler
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: ClusterIP
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name:automationai-scheduler-hpa
+  namespace: $NAMESPACE
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name:automationai-scheduler
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80 

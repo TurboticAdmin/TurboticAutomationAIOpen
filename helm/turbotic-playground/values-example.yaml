@@ -1,0 +1,223 @@
+# Example values file for turbotic-playground
+# Copy this file to values.yaml and update with your actual configuration
+# DO NOT commit values.yaml to version control - it contains sensitive secrets
+
+# Global settings
+global:
+  imageRegistry: ""
+  imagePullSecrets: []
+  storageClass: ""
+
+# Application settings
+app:
+  enabled: true
+  name: app
+  image:
+    repository: turbotic-automationai-test/app
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  
+  replicaCount: 1
+  
+  service:
+    type: ClusterIP
+    port: 3000
+    targetPort: 3000
+  
+  ingress:
+    enabled: true
+    className: "nginx"
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    hosts:
+      - host: turbotic.example.com
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: turbotic-tls
+        hosts:
+          - turbotic.example.com
+  
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 4Gi
+    requests:
+      cpu: 500m
+      memory: 2Gi
+  
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  
+  env:
+    # Core Configuration
+    NODE_ENV: "production"
+    PORT: "3000"
+    HOSTNAME: "0.0.0.0"
+    
+    # Application URLs (will be overridden by ingress)
+    NEXT_PUBLIC_APP_URL: "https://turbotic.example.com"
+    AUTOMATIONAI_ENDPOINT: "https://turbotic.example.com"
+    
+    # Socket Configuration
+    SOCKET_BASE_URL: "http://turbotic-playground-realtime-server:3001"
+    NEXT_PUBLIC_SOCKET_BASE_URL: "http://turbotic-playground-realtime-server:3001"
+    NEXT_PUBLIC_SOCKET_URL: "ws://turbotic-playground-realtime-server:3001"
+    
+    # Queue Configuration
+    SCHEDULE_QUEUE: "scheduler-queue"
+    
+    # Kubernetes Configuration for Script Runner
+    AUTOMATION_RUNNER_IMAGE: "turbotic-automationai-test/script-runner:latest"
+    # Image pull policy for script-runner jobs (IfNotPresent, Always, or Never)
+    # For local Docker Desktop: use "Never" to force using local images (no registry pull attempts)
+    # For production with registry: use "IfNotPresent" or "Always"
+    IMAGE_PULL_POLICY: "Never"
+    # Namespace where automation jobs will be created (default: turbotic-automationai-test)
+    NAMESPACE: "turbotic-automationai-test"
+    # Internal app service URL (for script-runner to connect to app within Kubernetes)
+    # Format: http://service-name:port (use Kubernetes service DNS name)
+    # Default: http://turbotic-playground-app:3000 (internal service name)
+    APP_SERVICE_URL: "http://turbotic-playground-app:3000"
+    # Public hostname for AUTOMATIONAI_ENDPOINT (used by script-runner to connect back to app)
+    # For local development with port-forward, use: localhost:3000
+    # For production, use your domain: yourdomain.com
+    PUBLIC_HOSTNAME: "localhost:3000"
+    # Protocol for AUTOMATIONAI_ENDPOINT (http or https)
+    # For local development: http
+    # For production: https
+    NEXT_PUBLIC_APP_PROTOCOL: "http"
+    # Job TTL in seconds (how long to keep completed jobs for debugging)
+    # Default: 300 (5 minutes). Set to 0 to delete immediately after completion
+    JOB_TTL_SECONDS: "300"
+  
+  # Secrets - should be provided via Kubernetes secrets
+  secrets:
+    # MongoDB - provide your external MongoDB endpoint
+    # Example: mongodb://user:password@mongodb-host:27017/database
+    mongoUri: "mongodb://user:password@mongodb-host:27017/database"
+    # JWT - Generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+    jwtSecret: "your-jwt-secret-here"
+    # Encryption - Generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+    encryptionKey: "your-32-byte-encryption-key-here"
+    # RabbitMQ - provide your external RabbitMQ endpoint
+    # Format: amqp://username:password@rabbitmq-host:5672
+    # For Docker Desktop: use host.docker.internal to access host machine
+    # Example: amqp://user:password@host.docker.internal:5672
+    rabbitMqEndpoint: "amqp://user:password@rabbitmq-host:5672"
+    # AI Services (optional)
+    perplexityApiKey: ""
+    azureOpenaiApiKey: ""
+    # Azure OpenAI instance name - use only the resource name (without .cognitiveservices.azure.com)
+    # The app will automatically append .openai.azure.com
+    azureOpenaiInstanceName: ""
+    azureOpenaiDeploymentName: ""
+    azureOpenaiApiVersion: "2025-01-01-preview"
+    # Email (optional)
+    sendgridApiKey: ""
+    # Microsoft OAuth (optional)
+    microsoftClientId: ""
+    microsoftClientSecret: ""
+    # Stripe (optional)
+    stripeSecretKey: ""
+    stripePublishableKey: ""
+
+# Realtime Server settings
+realtimeServer:
+  enabled: true
+  name: realtime-server
+  image:
+    repository: turbotic-automationai-test/realtime-server
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  
+  replicaCount: 1
+  
+  service:
+    type: ClusterIP
+    port: 3001
+    targetPort: 3001
+  
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+    requests:
+      cpu: 200m
+      memory: 512Mi
+  
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  
+  env:
+    PORT: "3001"
+    NODE_ENV: "production"
+  
+  secrets:
+    # MongoDB URI - provide your external MongoDB endpoint
+    # Example: mongodb://user:password@mongodb-host:27017/database
+    mongoUri: "mongodb://user:password@mongodb-host:27017/database"
+
+
+# Worker Node settings
+workerNode:
+  enabled: true
+  name: worker-node
+  image:
+    repository: turbotic-automationai-test/worker-node
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  
+  replicaCount: 1
+  
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+    requests:
+      cpu: 200m
+      memory: 512Mi
+  
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  
+  env:
+    # App Server URL - internal service URL for worker-node to communicate with app
+    # Format: http://service-name:port
+    appServerUrl: "http://turbotic-playground-app:3000"
+  
+  secrets:
+    # MongoDB URI - provide your external MongoDB endpoint
+    # Example: mongodb://user:password@mongodb-host:27017/database
+    mongoUri: "mongodb://user:password@mongodb-host:27017/database"
+    # RabbitMQ URI - provide your external RabbitMQ endpoint
+    # Format: amqp://username:password@rabbitmq-host:5672
+    # For Docker Desktop: use host.docker.internal to access host machine
+    # Example: amqp://user:password@host.docker.internal:5672
+    rabbitMqEndpoint: "amqp://user:password@rabbitmq-host:5672"
+
+# Service Account
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+# Pod Security Context
+podSecurityContext:
+  fsGroup: 1000
+  runAsNonRoot: true
+  runAsUser: 1000
+
+# Security Context
+securityContext:
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: false
+  runAsNonRoot: true
+  runAsUser: 1000
+

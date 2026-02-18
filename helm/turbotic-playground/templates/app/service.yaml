@@ -1,0 +1,19 @@
+{{- if .Values.app.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "turbotic-playground.fullname" . }}-{{ .Values.app.name }}
+  labels:
+    {{- include "turbotic-playground.componentLabels" (dict "component" .Values.app.name "Values" .Values "Release" .Release "Chart" .Chart) | nindent 4 }}
+spec:
+  type: {{ .Values.app.service.type }}
+  ports:
+    - port: {{ .Values.app.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "turbotic-playground.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: {{ .Values.app.name }}
+{{- end }}
+

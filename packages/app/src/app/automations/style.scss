@@ -1,0 +1,774 @@
+// Global rule to hide all scrollbar buttons within automation-container (fallback)
+.automation-container {
+    height: var(--window-height-without-header);
+    *::-webkit-scrollbar-button {
+        display: none !important;
+    }
+
+    .automation-tabs {
+        height: 100%;
+
+        .ant-tabs-nav {
+            margin-bottom: 40px;
+        }
+
+        .tab-search-input {
+            // border-radius: 8px !important;
+            // border: 1px solid #d9d9d9 !important;
+            // background: #fff !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+
+            &:hover {
+                border-color: #bfbfbf !important;
+            }
+
+            &:focus {
+                border-color: #1890ff !important;   
+                box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+            }
+        }
+
+        .ant-tabs-content-holder {
+            overflow: visible;
+
+            .ant-tabs-tabpane {
+                padding-right: 10px;
+            }
+        }
+
+        // Scrollbar styling for tabs content holder - Light mode
+        .ant-tabs-content-holder::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .ant-tabs-content-holder::-webkit-scrollbar-track {
+            background: #e8eef5;
+            border-radius: 6px;
+        }
+
+        .ant-tabs-content-holder::-webkit-scrollbar-thumb {
+            background: #b0b0b0;
+            border-radius: 6px;
+            border: 2px solid #e8eef5;
+
+            &:hover {
+                background: #909090;
+            }
+        }
+
+        .ant-tabs-content-holder::-webkit-scrollbar-button {
+            display: none;
+        }
+    }
+}
+
+// Dark mode scrollbar for tabs content holder
+.dark .automation-container {
+    .automation-tabs {
+        .ant-tabs-content-holder::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .ant-tabs-content-holder::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        .ant-tabs-content-holder::-webkit-scrollbar-thumb {
+            background: #4a4a4a;
+            border: 2px solid #1a1a1a;
+
+            &:hover {
+                background: #5a5a5a;
+            }
+        }
+
+        .ant-tabs-content-holder::-webkit-scrollbar-button {
+            display: none;
+        }
+    }
+    
+    // Dark mode scrollbar for execution history
+    .execution-history-scroll-container {
+        &::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #4a4a4a;
+            border: 2px solid #1a1a1a;
+
+            &:hover {
+                background: #5a5a5a;
+            }
+        }
+
+        &::-webkit-scrollbar-button {
+            display: none;
+        }
+    }
+}
+
+.automation-container {
+    .automation-tabs {
+
+        // Enhanced filter controls styling
+        .custom-date-picker {
+            .ant-picker-input {
+                input {
+                    font-size: 14px !important;
+                    line-height: 22px !important;
+                }
+                
+                input::placeholder {
+                    font-size: 14px !important;
+                    line-height: 22px !important;
+                }
+            }
+        }
+
+        // Remove underline from "Unselect all" / "Select all" buttons
+        .ant-btn.no-underline,
+        .ant-btn[type="text"],
+        .ant-btn.text-foreground {
+            text-decoration: none !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
+            
+            &, &:hover, &:focus, &:active, &:visited,
+            & *, & span, &::before, &::after {
+                text-decoration: none !important;
+                border-bottom: none !important;
+                box-shadow: none !important;
+            }
+        }
+        
+        // Additional rule for buttons with text-foreground class
+        button.text-foreground,
+        button.hover\:bg-muted,
+        .ant-btn.text-foreground,
+        .ant-btn.hover\:bg-muted {
+            text-decoration: none !important;
+            border-bottom: none !important;
+            
+            &, &:hover, &:focus, &:active, &:visited,
+            & *, & span {
+                text-decoration: none !important;
+                border-bottom: none !important;
+            }
+        }
+
+        // Custom red text delete button styling - Light mode
+        .custom-red-text-delete-button,
+        .custom-red-text-delete-button.ant-btn,
+        .ant-btn.custom-red-text-delete-button {
+            background-color: #FFFFFF !important;
+            border-color: #d9d9d9 !important;
+            color: #D13036 !important;
+
+            &:hover {
+                background-color: #f5f5f5 !important;
+                border-color: #d9d9d9 !important;
+                color: #D13036 !important;
+            }
+
+            &:focus {
+                background-color: #FFFFFF !important;
+                border-color: #d9d9d9 !important;
+                color: #D13036 !important;
+            }
+
+            .anticon,
+            svg {
+                color: #D13036 !important;
+            }
+
+            span {
+                color: #D13036 !important;
+            }
+        }
+
+        // Filter tag styling
+        .ant-tag {
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            border: 1px solid;
+
+            .anticon {
+                font-size: 12px;
+            }
+        }
+
+
+        // Results summary styling
+        .text-gray-500 {
+            color: #8c8c8c !important;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        // Pagination styling (same as User Configurations)
+        .ant-pagination {
+            * {
+                border-color: #d9d9d9 !important;
+                color: #595959 !important;
+                box-shadow: none !important;
+            }
+
+            *:hover {
+                border-color: #bfbfbf !important;
+                color: #595959 !important;
+                box-shadow: none !important;
+            }
+
+            *:focus {
+                border-color: #bfbfbf !important;
+                color: #595959 !important;
+                box-shadow: none !important;
+                outline: none !important;
+            }
+
+            .ant-pagination-item {
+                border-radius: 8px;
+                border: 1px solid #d9d9d9;
+
+                &:hover {
+                    border-color: #bfbfbf;
+                    background-color: #f5f5f5;
+                }
+
+                &.ant-pagination-item-active {
+                    background: #f0f0f0;
+                    border-color: #bfbfbf;
+                    color: #262626;
+
+                    a {
+                        color: #262626;
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            .ant-pagination-prev,
+            .ant-pagination-next {
+                border-radius: 8px;
+                border: 1px solid #d9d9d9;
+
+                &:hover {
+                    border-color: #bfbfbf;
+                    background-color: #f5f5f5;
+                }
+            }
+
+            .ant-pagination-options-size-changer {
+                .ant-select-selector {
+                    height: 24px !important;
+                    border: 1px solid #d9d9d9 !important;
+                    // background: #fff !important;
+                    box-shadow: none !important;
+                    padding: 0 20px 0 8px !important;
+
+                    .ant-select-selection-item {
+                        color: #595959 !important;
+                        line-height: 22px !important;
+                        font-size: 13px !important;
+                    }
+
+                    &:hover {
+                        border-color: #bfbfbf !important;
+                        background: #f5f5f5 !important;
+                    }
+                }
+
+                .ant-select-arrow {
+                    color: #8c8c8c !important;
+                    right: 6px !important;
+                    font-size: 10px !important;
+                }
+            }
+
+            .ant-pagination-options-quick-jumper {
+                input {
+                    border: 1px solid #d9d9d9 !important;
+                    box-shadow: none !important;
+                    color: #595959 !important;
+
+                    &:hover {
+                        border-color: #bfbfbf !important;
+                        box-shadow: none !important;
+                    }
+
+                    &:focus {
+                        border-color: #bfbfbf !important;
+                        box-shadow: none !important;
+                    }
+                }
+            }
+
+            .ant-pagination-jump-prev,
+            .ant-pagination-jump-next {
+                &:hover {
+                    .ant-pagination-item-link {
+                        color: #595959;
+                    }
+                }
+            }
+
+            .ant-pagination-item-link {
+                border-radius: 8px;
+                border: 1px solid #d9d9d9;
+
+                &:hover {
+                    border-color: #bfbfbf;
+                    color: #595959;
+                }
+            }
+
+            // Global override for any remaining blue elements
+            .ant-select,
+            .ant-select-selector,
+            .ant-select-selection-item,
+            .ant-input {
+                border-color: #d9d9d9 !important;
+                color: #595959 !important;
+                // background-color: #fff !important;
+                box-shadow: none !important;
+
+                &:hover,
+                &:focus,
+                &:active,
+                &.ant-select-focused,
+                &.ant-select-open {
+                    border-color: #bfbfbf !important;
+                    color: #595959 !important;
+                    background-color: #f5f5f5 !important;
+                    box-shadow: none !important;
+                    outline: none !important;
+                }
+            }
+        }
+    }
+
+    --infinite-scroll-height: calc(100vh - 430px);
+    --live-infinite-scroll-height: calc(100vh - 430px);
+    --scheduled-infinite-scroll-height: calc(100vh - 330px);
+
+    .my-automation-infinite-scroll {
+        overflow-x: hidden;
+        padding-bottom: 80px !important;
+
+        > div:last-child {
+            margin-bottom: 20px;
+        }
+    }
+
+    .execution-history-scroll-container {
+        --execution-history-height: calc(100vh - 430px);
+        height: var(--execution-history-height);
+        max-height: var(--execution-history-height);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-bottom: 80px;
+        
+        // Scrollbar styling for execution history - Light mode
+        &::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #e8eef5;
+            border-radius: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #b0b0b0;
+            border-radius: 6px;
+            border: 2px solid #e8eef5;
+
+            &:hover {
+                background: #909090;
+            }
+        }
+
+        &::-webkit-scrollbar-button {
+            display: none;
+        }
+    }
+
+}
+
+// Dark mode styling for delete button - using data-theme attribute for maximum specificity
+.custom-red-text-delete-button[data-theme="dark"],
+.custom-red-text-delete-button.ant-btn[data-theme="dark"],
+.ant-btn.custom-red-text-delete-button[data-theme="dark"],
+button.ant-btn.custom-red-text-delete-button[data-theme="dark"] {
+    background-color: #000000 !important;
+    background: #000000 !important;
+    border-color: #404040 !important;
+    border: 1px solid #404040 !important;
+    color: #D13036 !important;
+
+    &:hover {
+        background-color: #1a1a1a !important;
+        background: #1a1a1a !important;
+        border-color: #404040 !important;
+        color: #D13036 !important;
+    }
+
+    &:focus, &:active {
+        background-color: #000000 !important;
+        background: #000000 !important;
+        border-color: #404040 !important;
+        color: #D13036 !important;
+    }
+
+    .anticon,
+    svg {
+        color: #D13036 !important;
+    }
+
+    span {
+        color: #D13036 !important;
+    }
+}
+
+// Also add html.dark selector as fallback
+html.dark .custom-red-text-delete-button,
+html.dark .custom-red-text-delete-button.ant-btn,
+html.dark .ant-btn.custom-red-text-delete-button,
+body.dark .custom-red-text-delete-button,
+body.dark .custom-red-text-delete-button.ant-btn,
+body.dark .ant-btn.custom-red-text-delete-button {
+    background-color: #000000 !important;
+    background: #000000 !important;
+    border-color: #404040 !important;
+    border: 1px solid #404040 !important;
+    color: #D13036 !important;
+
+    &:hover {
+        background-color: #1a1a1a !important;
+        background: #1a1a1a !important;
+        border-color: #404040 !important;
+        color: #D13036 !important;
+    }
+
+    &:focus, &:active {
+        background-color: #000000 !important;
+        background: #000000 !important;
+        border-color: #404040 !important;
+        color: #D13036 !important;
+    }
+
+    .anticon,
+    svg {
+        color: #D13036 !important;
+    }
+
+    span {
+        color: #D13036 !important;
+    }
+}
+
+
+@media (max-width: 1300px) {
+
+    // .my-automation-content-container {
+    //     height: calc(100vh - 157px);
+    // }
+
+    .automation-container {
+        --infinite-scroll-height: calc(100vh - 350px);
+        --live-infinite-scroll-height: calc(100vh - 350px);
+        --scheduled-infinite-scroll-height: calc(100vh - 250px);
+        .automation-tabs {
+            .ant-tabs-nav {
+                // margin-bottom: 15px;
+            }
+        }
+    }
+
+    .my-automation-infinite-scroll {
+        max-height: calc(100vh - 430px);
+        height: calc(100vh - 430px);
+        padding-bottom: 80px !important;
+
+        > div:last-child {
+            margin-bottom: 20px;
+        }
+    }
+
+    .execution-history-scroll-container {
+        --execution-history-height: calc(100vh - 430px);
+        height: var(--execution-history-height);
+        max-height: var(--execution-history-height);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-bottom: 80px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .automation-container {
+        .execution-history-scroll-container {
+            --execution-history-height: calc(100vh - 380px);
+        }
+    }
+}
+
+// Scrollbar styling for schedule list overflow-y-auto containers - Light mode
+.overflow-y-auto::-webkit-scrollbar {
+    width: 12px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+    background: #e8eef5;
+    border-radius: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+    background: #b0b0b0;
+    border-radius: 6px;
+    border: 2px solid #e8eef5;
+
+    &:hover {
+        background: #909090;
+    }
+}
+
+.overflow-y-auto::-webkit-scrollbar-button {
+    display: none;
+}
+
+// Dark mode scrollbar for overflow-y-auto
+.dark .overflow-y-auto::-webkit-scrollbar {
+    width: 12px;
+}
+
+.dark .overflow-y-auto::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.dark .overflow-y-auto::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border: 2px solid #1a1a1a;
+
+    &:hover {
+        background: #5a5a5a;
+    }
+}
+
+.dark .overflow-y-auto::-webkit-scrollbar-button {
+    display: none;
+}
+
+// Scrollbar styling for execution history - Light mode
+#execution-history-scroll::-webkit-scrollbar {
+    width: 12px;
+}
+
+#execution-history-scroll::-webkit-scrollbar-track {
+    background: #e8eef5;
+    border-radius: 6px;
+}
+
+#execution-history-scroll::-webkit-scrollbar-thumb {
+    background: #b0b0b0;
+    border-radius: 6px;
+    border: 2px solid #e8eef5;
+
+    &:hover {
+        background: #909090;
+    }
+}
+
+#execution-history-scroll::-webkit-scrollbar-button {
+    display: none;
+}
+
+// Scrollbar styling for execution history - Dark mode
+.dark #execution-history-scroll::-webkit-scrollbar {
+    width: 12px;
+}
+
+.dark #execution-history-scroll::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.dark #execution-history-scroll::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border: 2px solid #1a1a1a;
+
+    &:hover {
+        background: #5a5a5a;
+    }
+}
+
+.dark #execution-history-scroll::-webkit-scrollbar-button {
+    display: none;
+}
+
+// Also apply to the main automation list infinite scroll
+.my-automation-infinite-scroll::-webkit-scrollbar {
+    width: 12px;
+}
+
+.my-automation-infinite-scroll::-webkit-scrollbar-track {
+    background: #e8eef5;
+    border-radius: 6px;
+}
+
+.my-automation-infinite-scroll::-webkit-scrollbar-thumb {
+    background: #b0b0b0;
+    border-radius: 6px;
+    border: 2px solid #e8eef5;
+
+    &:hover {
+        background: #909090;
+    }
+}
+
+.my-automation-infinite-scroll::-webkit-scrollbar-button {
+    display: none;
+}
+
+.dark .my-automation-infinite-scroll::-webkit-scrollbar {
+    width: 12px;
+}
+
+.dark .my-automation-infinite-scroll::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.dark .my-automation-infinite-scroll::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border: 2px solid #1a1a1a;
+
+    &:hover {
+        background: #5a5a5a;
+    }
+}
+
+.dark .my-automation-infinite-scroll::-webkit-scrollbar-button {
+    display: none;
+}
+
+// Global fallback: Hide scrollbar buttons for any element with overflow-y-auto or overflow-x-auto
+[class*="overflow-y-auto"],
+[class*="overflow-x-auto"],
+[style*="overflow-y: auto"],
+[style*="overflow-x: auto"] {
+    &::-webkit-scrollbar-button {
+        display: none !important;
+    }
+}
+
+// Dark mode version
+.dark {
+    [class*="overflow-y-auto"],
+    [class*="overflow-x-auto"],
+    [style*="overflow-y: auto"],
+    [style*="overflow-x: auto"] {
+        &::-webkit-scrollbar-button {
+            display: none !important;
+        }
+    }
+}
+
+// Blue arrow button styling for both light and dark modes
+.arrow-up-button-blue,
+.arrow-up-button-blue.ant-btn,
+.ant-btn.arrow-up-button-blue {
+    background-color: #1677FF !important;
+    border-color: #1677FF !important;
+
+    &:hover:not(:disabled) {
+        background-color: #4096FF !important;
+        border-color: #4096FF !important;
+    }
+
+    &:active:not(:disabled),
+    &:focus:not(:disabled) {
+        background-color: #0958D9 !important;
+        border-color: #0958D9 !important;
+    }
+
+    .anticon,
+    svg {
+        color: #FFFFFF !important;
+    }
+}
+
+// Ensure it works in dark mode as well
+.dark .arrow-up-button-blue,
+.dark .arrow-up-button-blue.ant-btn,
+.dark .ant-btn.arrow-up-button-blue,
+html.dark .arrow-up-button-blue,
+html.dark .arrow-up-button-blue.ant-btn,
+html.dark .ant-btn.arrow-up-button-blue {
+    background-color: #1677FF !important;
+    border-color: #1677FF !important;
+
+    &:hover:not(:disabled) {
+        background-color: #4096FF !important;
+        border-color: #4096FF !important;
+    }
+
+    &:active:not(:disabled),
+    &:focus:not(:disabled) {
+        background-color: #0958D9 !important;
+        border-color: #0958D9 !important;
+    }
+
+    .anticon,
+    svg {
+        color: #FFFFFF !important;
+    }
+}
+
+// Status dropdown menu styling to match FilterDropdown and DatePicker
+// Note: Ant Design dropdowns are rendered at body level, so these styles apply globally
+.ant-select-dropdown {
+    background: var(--list-item-background-color) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    padding: 4px 0 !important;
+
+    .ant-select-item {
+        padding: 8px 16px !important;
+        color: var(--foreground) !important;
+        font-family: 'DM Sans' !important;
+        font-size: 14px !important;
+        line-height: 22px !important;
+        border-bottom: 1px solid var(--border) !important;
+
+        &:hover {
+            background: var(--muted) !important;
+        }
+
+        &.ant-select-item-option-selected {
+            background: var(--muted) !important;
+            color: var(--foreground) !important;
+            font-weight: normal !important;
+        }
+
+        &.ant-select-item-option-active {
+            background: var(--muted) !important;
+        }
+    }
+
+    .ant-select-item-empty {
+        padding: 16px !important;
+        text-align: center !important;
+        color: var(--muted-foreground) !important;
+        font-size: 14px !important;
+    }
+}

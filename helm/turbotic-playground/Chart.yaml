@@ -1,0 +1,17 @@
+apiVersion: v2
+name: turbotic-playground
+description: A Helm chart for Turbotic Playground - Automation AI Platform
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - automation
+  - ai
+  - workflow
+  - turbotic
+home: https://github.com/TurboticAdmin/TurboticAutomationAIOpen
+sources:
+  - https://github.com/TurboticAdmin/TurboticAutomationAIOpen
+maintainers:
+  - name: Turbotic Team
+

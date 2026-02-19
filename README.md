@@ -98,7 +98,7 @@ TurboticPlayground/
 ## 📦 Editions ( links needs to be updated! LICENSE NEEDS DECISION)
 | Edition | License | Best For | Link |
 | :--- | :--- | :--- | :--- |
-| **Community (CE)** | Apache License 2.0 | Individual Devs & Hobbyists | [GitHub Repo](https://github.com/TurboticAdmin/TurboticAutomationAIOpen) |
+| **Community (CE)** | Turbotic BSL 1.1 | Individual Devs & Hobbyists | [GitHub Repo](https://github.com/TurboticAdmin/TurboticAutomationAIOpen) |
 | **Enterprise (EE)** | Commercial | Power Users & SMBs | [Turbotic.com](https://turbotic.com) |
 
 
@@ -107,7 +107,7 @@ We cherish our community! Please review our [CONTRIBUTING.md](/CONTRIBUTING.md) 
 
 ## 📄 License 
 
-This project is licensed under the Apache License 2.0. Refer to [LICENSE](/LICENSE.md)
+This project is licensed under the Turbotic BSL 1.1 Refer to [LICENSE](/LICENSE.md)
 
 
 **Last Updated**: Feb 2026

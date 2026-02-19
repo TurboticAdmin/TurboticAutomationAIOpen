@@ -8,11 +8,8 @@ First, thank you for taking the time to contribute! By participating in this pro
 
 ### Contributor License Agreement (CLA)
 By contributing to Turbotic AI, you agree that:
-1. Your contributions are licensed under the **Apache License 2.0**.
+1. Your contributions are licensed under the **Turbotic BSL License**.
 2. You grant the maintainers of Turbotic AI (the "Company") a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare derivative works of, and distribute your contributions in both our **Community** and **Commercial (Enterprise/Professional)** editions.
-
-### Apache 2.0 Compliance
-All contributions are subject to the terms of the Apache License 2.0. This ensures that the code remains open while providing patent protection for both the contributors and the users.
 
 ---
 

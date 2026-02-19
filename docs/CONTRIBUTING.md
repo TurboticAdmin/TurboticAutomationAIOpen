@@ -62,4 +62,4 @@ We are committed to providing a professional, safe, and welcoming environment fo
 ---
 
 ## 📬 Security
-If you find a security vulnerability, **do not open a public issue.** Please email **security@turbotic.com** directly.
+If you find a security vulnerability, **do not open a public issue.** Please email **support@turbotic.com** directly.

@@ -1,5 +1,4 @@
-# Security Policy (Email for security report needed)
-
+# Security Policy 
 ## Our Commitment
 At **Turbotic AI**, we are committed to maintaining a secure orchestration platform. We actively monitor and patch vulnerabilities in both our Community and Commercial editions.
 

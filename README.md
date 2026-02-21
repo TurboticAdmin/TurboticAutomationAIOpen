@@ -33,7 +33,7 @@ helm install turbotic-playground ./helm/turbotic-playground \
   -f helm/turbotic-playground/values-example.yaml
 ```
 
-📚 **Full deployment guide**: [helm/turbotic-playground/DEPLOYMENT.md](helm/turbotic-playground/DEPLOYMENT.md)  
+
 ⚡ **Quick start**: [helm/turbotic-playground/QUICKSTART.md](helm/turbotic-playground/QUICKSTART.md)
 
 The Helm chart deploys all four components:
@@ -95,7 +95,7 @@ TurboticPlayground/
 * **State Management:** [MongoDB](mongodb.com) & [RabbitMQ](rabbitmq.com)
 * **Infrastructure:** [Docker](docker.com)
 
-## 📦 Editions ( links needs to be updated! LICENSE NEEDS DECISION)
+## 📦 Editions 
 | Edition | License | Best For | Link |
 | :--- | :--- | :--- | :--- |
 | **Community (CE)** | Turbotic BSL 1.1 | Individual Devs & Hobbyists | [GitHub Repo](https://github.com/TurboticAdmin/TurboticAutomationAIOpen) |
